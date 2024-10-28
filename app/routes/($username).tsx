@@ -6,9 +6,9 @@ import {
 } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 
-export const meta: MetaFunction = () => {
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
   return [
-    { title: "Scrobbles.Today" },
+    { title: `${data?.username} has ${data?.scrobbles} Scrobbles.Today` },
     { name: "description", content: "How much did you scrobble today?" },
   ];
 };
@@ -88,12 +88,14 @@ export async function loader({ params }: LoaderFunctionArgs) {
     return json({
       message: `Failed to fetch scrobbles for ${username} today.`,
       scrobbles: 0,
+      username,
     });
   }
 
   return json({
     message: `${username}'s Last.fm stats for today`,
     scrobbles,
+    username,
   });
 }
 
