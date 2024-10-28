@@ -7,10 +7,38 @@ import {
 import { useLoaderData } from "@remix-run/react";
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
+  const ogImageUrl = `https://scrobbles.today/api/og?username=${data?.username}&scrobbles=${data?.scrobbles}`;
+
   return [
     { title: `${data?.username} has ${data?.scrobbles} Scrobbles.Today` },
     { name: "description", content: "How much did you scrobble today?" },
     { name: "theme-color", content: "#EC4C3B" },
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:creator", content: "@datejer" },
+    {
+      name: "twitter:title",
+      content: `${data?.username} has ${data?.scrobbles} Scrobbles.Today`,
+    },
+    {
+      name: "twitter:description",
+      content: "How much did you scrobble today?",
+    },
+    {
+      name: "og:title",
+      content: `${data?.username} has ${data?.scrobbles} Scrobbles.Today`,
+    },
+    { name: "og:description", content: "How much did you scrobble today?" },
+    { name: "og:url", content: "https://scrobbles.today" },
+    { name: "og:site_name", content: "Scrobbles.Today" },
+    { name: "og:type", content: "website" },
+    { name: "og:locale", content: "en_US" },
+    { name: "apple-mobile-web-app-title", content: "Scrobbles.Today" },
+    { name: "apple-mobile-web-app-capable", content: "yes" },
+    { name: "apple-mobile-web-app-status-bar-style", content: "default" },
+    { name: "viewport", content: "width=device-width, initial-scale=1" },
+
+    { name: "twitter:image", content: ogImageUrl },
+    { name: "og:image", content: ogImageUrl },
   ];
 };
 
