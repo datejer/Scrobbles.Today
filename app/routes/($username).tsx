@@ -20,6 +20,11 @@ export const headers: HeadersFunction = () => ({
 async function fetchScrobblesForToday(
   username: string
 ): Promise<number | undefined> {
+  if (!process.env.LASTFM_API_KEY) {
+    console.error("Missing LASTFM_API_KEY environment variable");
+    return undefined;
+  }
+
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   const startOfDay = Math.floor(today.getTime() / 1000); // Convert to UNIX timestamp
@@ -103,7 +108,7 @@ export default function Index() {
   const { scrobbles } = useLoaderData<typeof loader>();
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-purple-600 to-blue-500">
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-[#F44336] to-[#EC4C3B]">
       <div className="text-center">
         <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
           Scrobbles Today:
