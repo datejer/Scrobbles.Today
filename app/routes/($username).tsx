@@ -10,6 +10,7 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
   return [
     { title: `${data?.username} has ${data?.scrobbles} Scrobbles.Today` },
     { name: "description", content: "How much did you scrobble today?" },
+    { name: "theme-color", content: "#EC4C3B" },
   ];
 };
 
