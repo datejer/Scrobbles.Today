@@ -134,7 +134,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
 }
 
 export default function Index() {
-  const { scrobbles } = useLoaderData<typeof loader>();
+  const { scrobbles, username } = useLoaderData<typeof loader>();
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-[#F44336] to-[#EC4C3B]">
@@ -142,11 +142,13 @@ export default function Index() {
         <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
           Scrobbles Today:
         </h1>
-        <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12">
-          <span className="text-6xl md:text-8xl font-bold text-gray-800 tabular-nums">
-            {scrobbles}
-          </span>
-        </div>
+        <a href={`https://www.last.fm/user/${username}`}>
+          <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12">
+            <span className="text-6xl md:text-8xl font-bold text-gray-800 tabular-nums">
+              {scrobbles}
+            </span>
+          </div>
+        </a>
       </div>
     </div>
   );
