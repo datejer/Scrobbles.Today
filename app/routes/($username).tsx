@@ -142,7 +142,9 @@ export default function Index() {
         <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
           Scrobbles Today:
         </h1>
-        <a href={`https://www.last.fm/user/${username}`}>
+        <a
+          href={`https://www.last.fm/user/${username}/library?date_preset=LAST_7_DAYS`}
+        >
           <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12">
             <span className="text-6xl md:text-8xl font-bold text-gray-800 tabular-nums">
               {scrobbles}
